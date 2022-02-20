@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import SwapiService from '../../services/swapi-service';
+import React, {useState, useEffect, useContext} from 'react';
+import {Consumer} from '../swapi-context'
 import './random-planet.css';
 
 
 const Loader = () => <h1>Loading...</h1>
-const Loader = () => <h1>Something went wrong...</h1>
+const Error = () => <h1>Something went wrong...</h1>
 
 
 const RandomPlanet = () => {
@@ -12,16 +12,21 @@ const RandomPlanet = () => {
     loading: true,
     error: false,
   })
-  const swapi = new SwapiService()
+  const swapi = useContext(Consumer)
 
   useEffect(() => {
-    const planetInterval = setInterval(() => {
+    const updatePlanet = () => {
       const id = Math.floor(Math.random() * (20 - 1) + 1);
       swapi.getPlanet(id).then(planet => {
         setData({...data, ...planet, loading: false, error: false})
       }).catch(error => {
         setData({...data, loading: false, error: true})
       })
+    }
+
+    updatePlanet()
+    const planetInterval = setInterval(() => {
+      updatePlanet()
     }, 2500)
 
     return () => clearInterval(planetInterval)
