@@ -1,24 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {Link} from 'react-router-dom';
 import './header.css';
 
 const Header = () => {
-  const [data, setDate] = useState(1)
   return (
     <div className="header d-flex">
       <h3>
-        <a href="#">
+        <Link to="/">
           Star DB
-        </a>
+        </Link>
       </h3>
       <ul className="d-flex">
-        <li onClick={() => setDate(1)}>
-          <a href="#">People</a>
+        <li>
+          <Link to='/people/'>People</Link>
         </li>
-        <li onClick={() => setDate(2)}>
-          <a href="#">Planets</a>
+        <li>
+          <Link to="/planet/">Planets</Link>
         </li>
-        <li onClick={() => setDate(3)}>
-          <a href="#">Starships</a>
+        <li>
+          <Link to="/starship/">Starships</Link>
         </li>
       </ul>
     </div>
