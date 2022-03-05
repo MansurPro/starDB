@@ -1,12 +1,15 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import ItemList from '../item-list';
 import {ItemDetails, Record} from '../item-details';
 import Row from '../row';
 import { Consumer } from '../swapi-context';
+import { withRouter } from 'react-router-dom';
 
 
-const PlanetPage = () => {
-  const [selectedItemId, setSelectedItemId] = useState(1)
+const PlanetPage = ({ selectedItemId, history }) => {
+  const setSelectedItemId = (id) => {
+    history.push(id)
+  }
   const swapi = useContext(Consumer)
 
   const leftElement = (
@@ -33,4 +36,4 @@ const PlanetPage = () => {
 }
 
 
-export {PlanetPage};
+export default withRouter(PlanetPage);
