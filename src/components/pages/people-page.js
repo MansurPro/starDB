@@ -1,12 +1,15 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import ItemList from '../item-list';
 import {ItemDetails, Record} from '../item-details';
 import Row from '../row';
 import { Consumer } from '../swapi-context';
+import { withRouter } from 'react-router-dom';
 
 
-const PeoplePage = () => {
-  const [selectedItemId, setSelectedItemId] = useState(1)
+const PeoplePage = ({ selectedItemId, history }) => {
+  const setSelectedItemId = (id) => {
+    history.push(id)
+  }
   const swapi = useContext(Consumer)
 
   const leftElement = (
@@ -32,5 +35,4 @@ const PeoplePage = () => {
   return <Row left={leftElement} right={rightElement}/>
 }
 
-
-export {PeoplePage};
+export default withRouter(PeoplePage);
