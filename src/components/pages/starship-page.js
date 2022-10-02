@@ -6,7 +6,7 @@ import { Consumer } from '../swapi-context';
 import { withRouter } from 'react-router-dom';
 
 
-const PeoplePage = ({ selectedItemId, history }) => {
+const StarshipPage = ({ selectedItemId, history }) => {
   const setSelectedItemId = (id) => {
     history.push(id)
   }
@@ -14,7 +14,7 @@ const PeoplePage = ({ selectedItemId, history }) => {
 
   const leftElement = (
     <ItemList 
-      getData={swapi.getAllPeople}
+      getData={swapi.getAllStarships}
       setSelectedItemId={setSelectedItemId}
     >
       {(data) => data.name}
@@ -22,17 +22,20 @@ const PeoplePage = ({ selectedItemId, history }) => {
   );
   const rightElement = (
     <ItemDetails
-      getData={swapi.getPerson}
-      getImage={swapi.getPersonImage}
+      getData={swapi.getStarship}
+      getImage={swapi.getStarshipImage}
       selectedItemId={selectedItemId} 
     >
-      <Record label='Gender' fieldName='gender' />
-      <Record label='Eye color' fieldName='eyeColor' />
-      <Record label='Birth year' fieldName='birthYear' />
+      <Record label='Model' fieldName='model' />
+      <Record label='Cost in Credits' fieldName='costInCredits' />
+      <Record label='Length' fieldName='length' />
+      <Record label='Crew' fieldName='crew' />
+      <Record label='Passengers' fieldName='passengers' />
     </ItemDetails>
   );
 
   return <Row left={leftElement} right={rightElement}/>
 }
 
-export default withRouter(PeoplePage);
+
+export default withRouter(StarshipPage);

@@ -6,7 +6,7 @@ import { Consumer } from '../swapi-context';
 import { withRouter } from 'react-router-dom';
 
 
-const PeoplePage = ({ selectedItemId, history }) => {
+const PlanetPage = ({ selectedItemId, history }) => {
   const setSelectedItemId = (id) => {
     history.push(id)
   }
@@ -14,7 +14,7 @@ const PeoplePage = ({ selectedItemId, history }) => {
 
   const leftElement = (
     <ItemList 
-      getData={swapi.getAllPeople}
+      getData={swapi.getAllPlanets}
       setSelectedItemId={setSelectedItemId}
     >
       {(data) => data.name}
@@ -22,17 +22,18 @@ const PeoplePage = ({ selectedItemId, history }) => {
   );
   const rightElement = (
     <ItemDetails
-      getData={swapi.getPerson}
-      getImage={swapi.getPersonImage}
+      getData={swapi.getPlanet}
+      getImage={swapi.getPlanetImage}
       selectedItemId={selectedItemId} 
     >
-      <Record label='Gender' fieldName='gender' />
-      <Record label='Eye color' fieldName='eyeColor' />
-      <Record label='Birth year' fieldName='birthYear' />
+      <Record label='Population' fieldName='population' />
+      <Record label='Rotation Period' fieldName='rotationPeriod' />
+      <Record label='Diameter' fieldName='diameter' />
     </ItemDetails>
   );
 
   return <Row left={leftElement} right={rightElement}/>
 }
 
-export default withRouter(PeoplePage);
+
+export default withRouter(PlanetPage);

@@ -1,10 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Consumer} from '../swapi-context'
+import {Consumer} from '../swapi-context';
+import Loader from '../loader';
+import Error from '../error';
 import './random-planet.css';
-
-
-const Loader = () => <h1>Loading...</h1>
-const Error = () => <h1>Something went wrong...</h1>
 
 
 const RandomPlanet = () => {
